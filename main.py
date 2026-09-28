@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-
+import os
 import httpx
 import uvicorn
 from fastapi import FastAPI, Request
@@ -71,5 +71,4 @@ async def proxy(request: Request, full_path: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80)
-
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", "80")))
