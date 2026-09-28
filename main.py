@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 import httpx
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
 from starlette.background import BackgroundTask
@@ -67,3 +68,8 @@ async def proxy(request: Request, full_path: str):
         if k.decode().lower() not in HOP_BY_HOP
     ]
     return resp
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=80)
+
